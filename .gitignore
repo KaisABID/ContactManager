@@ -1,0 +1,35 @@
+# Fichiers spécifiques à Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.csproj.user
+
+# Fichiers spécifiques à .NET Core
+/.dotnet/
+/global.json
+/obj/
+/Properties/
+/launchSettings.json
+
+# Fichiers spécifiques à l'environnement de développement
+/.vscode/
+/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Fichiers spécifiques à l'environnement de test
+/testResults/
+
+# Fichiers spécifiques à l'environnement de déploiement
+/wwwroot/
+
+# Fichiers spécifiques à l'environnement de production
+/appsettings.json
+/appsettings.Development.json
+
+# Fichiers et répertoires générés automatiquement
+/bin/
+/obj/
