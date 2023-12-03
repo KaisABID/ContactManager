@@ -9,15 +9,14 @@
     <div>
         <h2 class="text-center">Clients</h2>
     </div>
-    <div>
-        @Html.ActionLink("LogOut", "Index", "User", null, new { @class = "btn btn-dark" })
-    </div>
+    <div class = "btn btn-dark">@Html.ActionLink("Exit","Menu","Home",new {@class = "btn btn-dark"})  </div>
+        
 </div>
 
 <br><br>
 <table class="table table-bordered">
     <thead>
-        <tr >
+        <tr>
             <th class="text-primary">Code</th>
             <th class="text-primary">Name</th>
             <th class="text-primary">Adress</th>

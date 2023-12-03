@@ -9,8 +9,8 @@
     <div>
         <h2 class="text-center">Users</h2>
     </div>
-    <div>
-        @Html.ActionLink("LogOut", "Index", "HomeController", null, new { @class = "btn btn-dark" })
+    <div class = "btn btn-dark">
+        @Html.ActionLink("Exit","Menu","Home",new {@class = "btn btn-dark"})
     </div>
 </div>
 
@@ -28,14 +28,12 @@
     @foreach (User u in ViewBag.AllUsers)
         {
             <tr>
-
                 <td>@u.FirstName</td>
                 <td>@u.LastName</td>
                 <td>@u.Email</td>
                 <td>
                     <a href="/Edit/@u.UserId"> Edit </a> |
                     <a href="/Delete/@u.UserId"> Delete </a>
-
                 </td>
             </tr>
         }

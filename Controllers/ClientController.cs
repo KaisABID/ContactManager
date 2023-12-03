@@ -16,15 +16,20 @@ public class ClientController : Controller
     }
     public IActionResult ClientTable()
     {
-        // Use pagination or lazy loading instead of ToList() for large datasets
-            var allClients = _context.Clients.ToList();
+        int? IntVariable = HttpContext.Session.GetInt32("UserId");
+        if (IntVariable == null)
+        {
+            return RedirectToAction("Menu", "Home");
+        }
+        var allClients = _context.Clients.ToList();
 
-            ViewBag.AllClients=allClients;
-            ViewBag.NbClients = allClients.Count;
-            return View();
+        ViewBag.AllClients=allClients;
+        ViewBag.NbClients = allClients.Count;
+        return View();
     }
     public IActionResult ClientCard()
     {
+        ViewBag.ClientId = 0;
         return View();
     }
     [HttpGet("EditClt/{idclient}")]
@@ -138,7 +143,6 @@ public IActionResult ValidClient(Client newclient)
 [HttpGet("AffichListContact/{IdClient}")]
 public IActionResult AffichListContact(int idclient)
 { 
-    Console.WriteLine("aaaaaaaaaaaaaaaaaaa " + idclient);
     var contactsSansClient = _context.Contacts
     .Where(c => !_context.ClientContacts.Any(cc => cc.ContactId == c.ContactId) || _context.ClientContacts.Any(cc => cc.ContactId == c.ContactId && cc.ClientId != idclient))
             .Select(c => new
@@ -177,12 +181,9 @@ else
     return RedirectToAction("EditClt", new { idClient =idclient});
 }
 }
-
 [HttpGet("DeleteContactClt/{idcontact}/{idclient}")]
-
 public IActionResult DeleteContactClt(int idcontact, int idclient)
-{
-    
+{ 
     if (idcontact != 0 && idclient != 0)
     {
         ClientContact? contact = _context.ClientContacts.FirstOrDefault(c => c.ContactId == idcontact && c.ClientId == idclient);
@@ -202,6 +203,11 @@ public IActionResult DeleteContactClt(int idcontact, int idclient)
     {
         return RedirectToAction("EditClt", new { idClient = idclient });
     }
+}
+
+public IActionResult Menu()
+{
+    return View();
 }
 
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

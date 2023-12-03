@@ -16,11 +16,17 @@ public class UserController : Controller
 
     public IActionResult UserTable()
     {
-        // Use pagination or lazy loading instead of ToList() for large datasets
-        // var allUsers = _context.Users.ToList();
-        // ViewBag.AllUsers = allUsers;
+        int? IntVariable = HttpContext.Session.GetInt32("UserId");
+        Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAA " + IntVariable);
+        if (IntVariable == null)
+        {
+            return RedirectToAction("Menu", "Home");
+        }
+        else
+        {
         ViewBag.AllUsers = _context.Users.ToList();
         return View();
+        }
     }
     
     public IActionResult UserCard()

@@ -18,6 +18,11 @@ public class ContactController : Controller
 
     public IActionResult ContactTable()
     {
+        int? IntVariable = HttpContext.Session.GetInt32("UserId");
+        if (IntVariable == null)
+        {
+            return RedirectToAction("Menu", "Home");
+        }
         // Use pagination or lazy loading instead of ToList() for large datasets
         var allContacts = _context.Contacts.ToList();
         ViewBag.AllContacts=allContacts;
@@ -116,7 +121,6 @@ public IActionResult ValidContact(Contact newcontact)
         else
         {
             // Ajout d'un nouvel élément
-            Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAA");
             newcontact.CreatedAt = DateTime.Now;
             _context.Contacts.Add(newcontact);
             _context.SaveChanges();
@@ -126,48 +130,10 @@ public IActionResult ValidContact(Contact newcontact)
     }
     else
     {
-        Console.WriteLine("BBBBBBBBBBBB");
         return View("ContactCard");
     }
 }
 
-[HttpGet("AffichListClientCt/{IdContact}")]
-public IActionResult AffichListContact(int IdContact)
-{
-
-    var ListContactClient = from cc in _context.ClientContacts
-        where cc.ContactId != IdContact
-        join c in _context.Contacts
-        on cc.ContactId equals c.ContactId
-        join ct in _context.Clients
-        on cc.ClientId equals ct.ClientId
-        select new
-        {       
-            ClientId = cc.ClientId, 
-            ContactId = cc.ContactId,
-            ClientName = ct.ClientName,
-            ClientEmail = ct.Email,
-            ClientTel1 = ct.Tel1,
-            ClientTel2 = ct.Tel2
-        };
-    ViewBag.NbContactClient =ListContactClient.ToList().Count();
-    ViewBag.CltContacts=ListContactClient.ToList();   
-    return View("VisionClient");
-}
-
-
-[HttpPost("AddClientToContact/{IdClient}/{IdContact}")]
-public IActionResult AddContactToClient(int IdClient,int IdContact)
-{
-    _context.ClientContacts.Add(new ClientContact
-    {
-        ClientId = IdClient,
-        ContactId = IdContact
-    });
-    _context.SaveChanges();
-    return RedirectToAction("EditContact",IdContact);
-
-}
 
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 public IActionResult Error()
