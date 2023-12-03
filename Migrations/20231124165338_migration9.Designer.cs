@@ -3,6 +3,7 @@ using System;
 using ContactManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactManager.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20231124165338_migration9")]
+    partial class migration9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,9 +47,6 @@ namespace ContactManager.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ClientContactId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ClientName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -76,8 +75,6 @@ namespace ContactManager.Migrations
 
                     b.HasKey("ClientId");
 
-                    b.HasIndex("ClientContactId");
-
                     b.ToTable("Clients");
                 });
 
@@ -95,16 +92,13 @@ namespace ContactManager.Migrations
 
                     b.HasKey("ClientContactId");
 
-                    b.ToTable("ClientContacts");
+                    b.ToTable("ClientContact");
                 });
 
             modelBuilder.Entity("ContactManager.Models.Contact", b =>
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ClientContactId")
                         .HasColumnType("int");
 
                     b.Property<string>("ContactEmail")
@@ -134,8 +128,6 @@ namespace ContactManager.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("ContactId");
-
-                    b.HasIndex("ClientContactId");
 
                     b.ToTable("Contacts");
                 });
@@ -171,27 +163,6 @@ namespace ContactManager.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ContactManager.Models.Client", b =>
-                {
-                    b.HasOne("ContactManager.Models.ClientContact", null)
-                        .WithMany("Clients")
-                        .HasForeignKey("ClientContactId");
-                });
-
-            modelBuilder.Entity("ContactManager.Models.Contact", b =>
-                {
-                    b.HasOne("ContactManager.Models.ClientContact", null)
-                        .WithMany("Contacts")
-                        .HasForeignKey("ClientContactId");
-                });
-
-            modelBuilder.Entity("ContactManager.Models.ClientContact", b =>
-                {
-                    b.Navigation("Clients");
-
-                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

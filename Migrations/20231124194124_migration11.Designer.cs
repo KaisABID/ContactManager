@@ -3,6 +3,7 @@ using System;
 using ContactManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,14 +11,45 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactManager.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20231124194124_migration11")]
+    partial class migration11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("ClientClientContact", b =>
+                {
+                    b.Property<int>("ClientContactsClientContactId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClientsClientId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientContactsClientContactId", "ClientsClientId");
+
+                    b.HasIndex("ClientsClientId");
+
+                    b.ToTable("ClientClientContact");
+                });
+
+            modelBuilder.Entity("ClientContactContact", b =>
+                {
+                    b.Property<int>("ClientContactsClientContactId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ContactsContactId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientContactsClientContactId", "ContactsContactId");
+
+                    b.HasIndex("ContactsContactId");
+
+                    b.ToTable("ClientContactContact");
+                });
 
             modelBuilder.Entity("ContactManager.Models.Client", b =>
                 {
@@ -44,9 +76,6 @@ namespace ContactManager.Migrations
                     b.Property<string>("ClientCode")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("ClientContactId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ClientName")
                         .IsRequired()
@@ -76,8 +105,6 @@ namespace ContactManager.Migrations
 
                     b.HasKey("ClientId");
 
-                    b.HasIndex("ClientContactId");
-
                     b.ToTable("Clients");
                 });
 
@@ -102,9 +129,6 @@ namespace ContactManager.Migrations
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ClientContactId")
                         .HasColumnType("int");
 
                     b.Property<string>("ContactEmail")
@@ -134,8 +158,6 @@ namespace ContactManager.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("ContactId");
-
-                    b.HasIndex("ClientContactId");
 
                     b.ToTable("Contacts");
                 });
@@ -173,25 +195,34 @@ namespace ContactManager.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ContactManager.Models.Client", b =>
+            modelBuilder.Entity("ClientClientContact", b =>
                 {
                     b.HasOne("ContactManager.Models.ClientContact", null)
-                        .WithMany("Clients")
-                        .HasForeignKey("ClientContactId");
+                        .WithMany()
+                        .HasForeignKey("ClientContactsClientContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ContactManager.Models.Client", null)
+                        .WithMany()
+                        .HasForeignKey("ClientsClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("ContactManager.Models.Contact", b =>
+            modelBuilder.Entity("ClientContactContact", b =>
                 {
                     b.HasOne("ContactManager.Models.ClientContact", null)
-                        .WithMany("Contacts")
-                        .HasForeignKey("ClientContactId");
-                });
+                        .WithMany()
+                        .HasForeignKey("ClientContactsClientContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("ContactManager.Models.ClientContact", b =>
-                {
-                    b.Navigation("Clients");
-
-                    b.Navigation("Contacts");
+                    b.HasOne("ContactManager.Models.Contact", null)
+                        .WithMany()
+                        .HasForeignKey("ContactsContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

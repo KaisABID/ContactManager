@@ -1,8 +1,6 @@
 #pragma warning disable CS8618
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
-using System.Runtime.CompilerServices;
 namespace ContactManager.Models;
 
 public class ClientContact
@@ -11,10 +9,13 @@ public class ClientContact
     public int ClientContactId { get; set; } 
 
     [Required]
-    public string ClientId { get; set; }
+    public int  ClientId { get; set; }
     [Required]
 
-    public string ContactId { get; set; }  
+    public int  ContactId { get; set; }  
+
+public Client client {get; set;}
+public Contact contact {get; set;}
 
 
 }

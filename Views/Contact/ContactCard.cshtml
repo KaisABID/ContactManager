@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Contacts";
+}
+@model Contact
+<form class="form-control" action="/ValidContact" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ContactName">Name :</label>
+                <input asp-for="ContactName" type="text" class="form-control">
+                <span asp-validation-for="ContactName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ContactEmail">Email :</label>
+                <input asp-for = "ContactEmail" type="text" class="form-control">
+                <span asp-validation-for="ContactEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Contacttel1">Tel1 :</label>
+                <input asp-for="ContactTel1" class ="form-control">
+                <span asp-validation-for="ContactTel1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Contacttel2">Tel2 :</label>
+                <input asp-for="ContactTel2" class ="form-control">
+                <span asp-validation-for="ContactTel2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ContactNotes">Notes :</label>
+                <input type = "TextArea" asp-for="ContactNotes" class ="form-control">
+                <span asp-validation-for="ContactNotes" class="text-danger"></span>
+            </div> 
+            @if (@Model!= null)
+            {
+                <div>
+                    <input type = "hidden" asp-for="ContactId" name="ContactId" class = "form-control"/>        
+                </div>
+            }
+            <br>
+            <button  type="submit" class="btn btn-primary">Valid Contact</button>
+            <input type="button" class="btn btn-secondary" value="Cancel" onclick="location.href='@Url.Action("ContactTable", "Table")'" />
+        </div>
+    </div>
+</form>
+

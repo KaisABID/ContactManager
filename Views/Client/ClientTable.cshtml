@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class= "d-flex justify-content-between align-items-stretch">
+    <div class="btn-group">
+        @Html.ActionLink("New", "ClientCard", 0,new { @class = "btn btn-primary" })
+    </div>
+    <div>
+        <h2 class="text-center">Clients</h2>
+    </div>
+    <div>
+        @Html.ActionLink("LogOut", "Index", "User", null, new { @class = "btn btn-dark" })
+    </div>
+</div>
+
+<br><br>
+<table class="table table-bordered">
+    <thead>
+        <tr >
+            <th class="text-primary">Code</th>
+            <th class="text-primary">Name</th>
+            <th class="text-primary">Adress</th>
+            <th class="text-primary">City</th>
+            <th class="text-primary">Tel1</th>
+            <th class="text-primary">Tel2</th>
+            <th class="text-primary">Mail</th>
+            <th class="text-primary">   </th>
+        </tr>
+    </thead>
+
+<tbody>
+    @if (ViewBag.NbClients >0)
+    {
+        @foreach (Client c in ViewBag.AllClients)
+        {
+            <tr>
+                <td>@c.ClientCode</td>
+                <td>@c.ClientName</td>
+                <td>@c.ClientAdress</td>
+                <td>@c.City</td>
+                <td>@c.Tel1</td>
+                <td>@c.Tel2</td>
+                <td>@c.Email</td>
+                <td>
+                    <a href="/EditClt/@c.ClientId"> Edit </a> |
+                    <a href="/DeleteClt/@c.ClientId"> Delete </a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="8">No clients found</td>
+        </tr>
+    }
+</tbody>
+
+    
+</table>
+
+
+
+

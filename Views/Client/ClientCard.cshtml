@@ -1,0 +1,130 @@
+@{
+    ViewData["Title"] = "Clients";
+}
+@model Client
+<form class="form-control" action="/ValidClient" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ClientCode">Code :</label>
+                <input asp-for="ClientCode" type="text" class="form-control">
+                <span asp-validation-for="ClientCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ClientName">Name :</label>
+                <input asp-for="ClientName" type="text" class="form-control">
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ClientAdress">Adress :</label>
+                <input asp-for="ClientAdress" type="text" class="form-control">
+                <span asp-validation-for="ClientAdress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ClientAdress1">Complement :</label>
+                <input asp-for="ClientAdress1" type="text" class="form-control">
+                <span asp-validation-for="ClientAdress1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="City">City :</label>
+                <input asp-for="City" type="text" class="form-control">
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CP">CP :</label>
+                <input asp-for="CP" type="text" class="form-control">
+                <span asp-validation-for="CP" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <di class="form-group">
+                <label for="Email">Email :</label>
+                <input asp-for = "Email" type="text" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </di>
+
+            <div class="form-group">
+                <label for="tel1">Tel1 :</label>
+                <input asp-for="Tel1" class ="form-control">
+                <span asp-validation-for="Tel1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="tel2">Tel2 :</label>
+                <input asp-for="Tel2" class ="form-control">
+                <span asp-validation-for="Tel2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ClientNotes">Notes :</label>
+                <input type = "TextArea" asp-for="ClientNotes" class ="form-control">
+                <span asp-validation-for="ClientNotes" class="text-danger"></span>
+            </div> 
+            @if (@Model!= null)
+            {
+                <div>
+                    <input type = "hidden" asp-for="ClientId" name="ClientId" class = "form-control"/>        
+                </div>
+            }
+            <br>
+            <button  type="submit" class="btn btn-primary">Valid Client</button>
+            <input type="button" class="btn btn-secondary" value="Cancel" onclick="location.href='@Url.Action("ClientTable", "Client")'" />
+        </div>
+    </div>
+    <br>
+    <div>
+    
+</div>
+</form>
+<br>
+
+
+<div>
+
+@if (ViewBag.IdClient !=0 )
+    {
+    <a href="/AffichListContact/@Model.ClientId" class ="btn btn-primary">Add Contact</a> 
+    }
+</div>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-primary">Code</th>
+            <th class="text-primary">Name</th>
+            <th class="text-primary">Tel1</th>
+            <th class="text-primary">Tel2</th>
+            <th class="text-primary">Mail</th>
+            <th class="text-primary">   </th>
+        </tr>
+    </thead>
+
+<tbody>
+    @if (ViewBag.NbCltContact >0 && @Model.ClientId  !=0 )
+    {
+        @foreach (var c in ViewBag.CltContacts)
+        {
+            <tr>
+                <td>@c.ContactId</td>
+                <td>@c.ContactName</td>
+                <td>@c.Contacttel1</td>
+                <td>@c.Contacttel2</td>
+                <td>@c.ContactEmail</td>
+                <td>
+                    <a href="/DeleteContactClt/@c.ContactId/@Model.ClientId">Delete</a>
+                </td>
+            </tr>
+        } 
+    }
+    else
+    {
+        <tr>
+            <td colspan="8">No Contacts found</td>
+        </tr>
+    }
+
+</tbody>
+
+
+
+

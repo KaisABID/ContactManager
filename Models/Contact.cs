@@ -16,8 +16,19 @@ public class Contact
     [Required]
 
     [EmailAddress]
-    public string Email { get; set; }  
+    public string ContactEmail { get; set; } 
+
+    public string ContactTel1 {get;set;}
+    public string ContactTel2 {get;set;}
 
     public string ContactNotes { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+    [NotMapped]
+    public List<ClientContact> ClientContacts { get; set; } = new List<ClientContact>();
+
+
 
 }

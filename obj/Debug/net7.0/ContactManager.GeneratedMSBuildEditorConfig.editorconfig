@@ -16,24 +16,32 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = P:\CodingDojo\Project1\ContactManager
 build_property._RazorSourceGeneratorDebug = 
 
-[P:/CodingDojo/Project1/ContactManager/Views/Clients/ClientCard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xDbGllbnRDYXJkLmNzaHRtbA==
+[P:/CodingDojo/Project1/ContactManager/Views/Client/ClientCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudENhcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[P:/CodingDojo/Project1/ContactManager/Views/Clients/ClientList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xDbGllbnRMaXN0LmNzaHRtbA==
+[P:/CodingDojo/Project1/ContactManager/Views/Client/ClientTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudFRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[P:/CodingDojo/Project1/ContactManager/Views/Clients/ClientsVision.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xDbGllbnRzVmlzaW9uLmNzaHRtbA==
+[P:/CodingDojo/Project1/ContactManager/Views/Client/VisionContact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XFZpc2lvbkNvbnRhY3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[P:/CodingDojo/Project1/ContactManager/Views/Contact/ContactCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxDb250YWN0Q2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[P:/CodingDojo/Project1/ContactManager/Views/Contact/ContactTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxDb250YWN0VGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [P:/CodingDojo/Project1/ContactManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[P:/CodingDojo/Project1/ContactManager/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[P:/CodingDojo/Project1/ContactManager/Views/Home/Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNZW51LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [P:/CodingDojo/Project1/ContactManager/Views/Shared/Error.cshtml]
@@ -42,6 +50,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [P:/CodingDojo/Project1/ContactManager/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[P:/CodingDojo/Project1/ContactManager/Views/User/UserCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyQ2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[P:/CodingDojo/Project1/ContactManager/Views/User/UserTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [P:/CodingDojo/Project1/ContactManager/Views/_ViewImports.cshtml]

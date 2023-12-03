@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Users";
+}
+@model User
+<form class="form-control" action="/ValidUser" method="post">
+    <div class="form-group">
+        <label for="FirstName">First Name :</label>
+        <input asp-for="FirstName" type="text" class="form-control">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last Name :</label>
+        <input asp-for="LastName" type="text" class="form-control">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Email">Email :</label>
+        <input asp-for = "Email" type="text" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Password">Password :</label>
+        <input asp-for="Password" class ="form-control">
+        <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    <div class="form-group">
+        <label for="Confirm">PW Confirm :</label>
+        <input asp-for="Confirm" class ="form-control">
+        <span asp-validation-for="Confirm" class="text-danger"></span>
+    </div> 
+    @if (@Model!= null)
+    {
+        <div>
+            <input type = "hidden" asp-for="UserId" name="UserId" class = "form-control"/>        
+        </div>
+    }
+    <br>
+    <button  type="submit">Valid User</button>
+    <button  type="button">Cancel</button>
+
+</form>

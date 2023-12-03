@@ -2,6 +2,21 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    
-</div>
+
+@model LoginUser
+<form class ="form-control" Action = "/UserLogin" method="post">
+    <div class="form-group">
+        <label for="LogEmail">Email :</label>
+        <input asp-for="LogEmail" class ="form-control">
+    </div>
+    <div class="form-group">
+        <label for="LogPassword">Password :</label>
+        <input asp-for="LogPassword" class ="form-control">
+        <span asp-validation-for="LogEmail" class="text-danger"></span>
+        <span asp-validation-for="LogPassword" class="text-danger"></span>
+        <br>
+    </div>
+    <div class="form-group">
+        <button type="submit">Login</button>
+    </div>
+</form>

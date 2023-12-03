@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class= "d-flex justify-content-between align-items-stretch">
+    <div class="btn-group">
+        @Html.ActionLink("New", "ContactCard", 0,new { @class = "btn btn-primary" })
+    </div>
+    <div>
+        <h2 class="text-center">Contacts</h2>
+    </div>
+    <div>
+        @Html.ActionLink("LogOut", "Index", "UserController", null, new { @class = "btn btn-dark" })
+    </div>
+</div>
+
+<br><br>
+<table class="table table-bordered">
+    <thead>
+        <tr >
+            <th class="text-primary">Name</th>
+            <th class="text-primary">Tel1</th>
+            <th class="text-primary">Tel2</th>
+            <th class="text-primary">Mail</th>
+            <th class="text-primary">   </th>
+        </tr>
+    </thead>
+
+<tbody>
+    @if (ViewBag.NbContacts >0)
+    {
+        @foreach (Contact c in ViewBag.AllContacts)
+        {
+            <tr>
+                <td>@c.ContactName</td>
+                <td>@c.ContactTel1</td>
+                <td>@c.ContactTel2</td>
+                <td>@c.ContactEmail</td>
+                <td>
+                    <a href="/EditContact/@c.ContactId"> Edit </a> |
+                    <a href="/DeleteContact/@c.ContactId"> Delete </a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="8">No contacts found</td>
+        </tr>
+    }
+</tbody>
+
+    
+</table>
+
+
+
+

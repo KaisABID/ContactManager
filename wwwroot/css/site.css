@@ -34,3 +34,12 @@ body {
 .nav-link {
   order: 2;
 }
+
+th {
+  color: black;
+  text-align: center;
+}
+tbody tr:nth-child(even) {
+  background-color:white
+}
+
