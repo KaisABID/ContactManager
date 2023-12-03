@@ -14,7 +14,6 @@ public class HomeController : Controller
         _logger = logger;
         _context = context;
     }
-
     public IActionResult Index()
     {
         //We verify if the user table is empty or not. If it is we add a default user
